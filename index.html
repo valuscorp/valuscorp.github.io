@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-121638259-1"></script> -->
+  <script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'UA-121638259-1');
+  </script>
+
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Valus</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <link rel="stylesheet" typpe="text/css" media="screen" href="normalize-min.css">
+  <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+  <script src="jquery-3.3.1.min.js"></script>
+</head>
+<body>
+
+  <div id="site-container">
+    <div id="left-half-container">
+      <div class="content-container">
+        <a href=".">
+          <img src="ValusLogo.png" alt="" id="logo">
+        </a>
+        <h1 id="title">Valus</h1>
+        <h2 id="app-description">
+          "A secure virtual platform which facilitates legal services that connects legal professionals to clients using AI"
+        </h2>
+      </div>
+
+      <div id="footer-container">
+        <footer>
+          <h5 id="copyright">&copy; Valus</h5>
+          <!-- <h6 id="creator"> 
+            Site created by <a href="http://github.com/ShabazBadshah">Shabaz Badshah</a>
+          </h6> -->
+        </footer>
+      </div>
+
+    </div>
+    
+    <div id="right-half-container">
+      <div class="content-container">
+        <div id="prompt-container">
+          <h2 id="sign-up-text">Sign up for our updates!</h2>
+          <h3 id="sign-up-sub-text">Don't worry, we don't spam</h3>
+        </div>
+
+        <form id="gform" method="POST" action="https://script.google.com/macros/s/AKfycbyVKuM3GuPpSQAUm-O7tLmhesV2M4zhAm7TTbSoVDMia_rylGA/exec">
+          <input id="honeypot" type="text" name="honeypot" value="" style="display:none"/>
+          <div id="form-container">
+              <input type="text" name="email" id="email-input-field" placeholder="Enter your email">
+              <br>
+              <button type="submit" onclick="return shouldSubmitForm();" id="submit-email-button">Sign Up</button>
+          </div>
+        </form>
+      </div>
+      
+      <div id="snackbar-text-container">
+        <h4 id="snackbar-text"></h4>
+      </div>
+
+    </div>
+  </div>
+  
+  <script>
+    const snackbar = $('#snackbar-text-container');
+    const snackbarText = $('#snackbar-text')[0];
+    const emailField = $('#email-input-field');
+    const STATE_SUCCESS = 'SUCCESS';
+    const STATE_ERROR = 'ERROR';
+    let submitForm = false;
+
+    $(document).ready(function(){
+      
+      emailField.keypress((e) => { // Enter key was pressed
+        if (e.which === 13) verifyEmail(emailField.val().toLowerCase().trim());
+      });
+
+      $('#submit-email-button').on('click', () => {
+        const emailFieldText = emailField.val().toLowerCase().trim();
+        verifyEmail(emailFieldText);
+      });
+    });
+    
+    function showSnackbar(message, messageType) {
+      snackbarText.innerHTML = message;
+      snackbar.slideDown(250);
+
+      switch(messageType) {
+        case 'SUCCESS':
+          setTimeout(() => snackbar.slideUp(250), 3000);
+          break;
+        case 'ERROR':
+          setTimeout(() => snackbar.slideUp(250), 2000);
+          break;
+        default:
+          break;
+      }
+    } 
+
+    function shouldSubmitForm() {
+      return submitForm;
+    }
+    
+    // Sending emails withouot a server https://github.com/dwyl/learn-to-send-email-via-google-script-html-no-server
+    function verifyEmail(email) {
+      // General Email Regex (RFC 5322 Official Standard)
+      const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+      submitForm = false;
+
+      if (emailRegex.test(email)) {
+        $('#sign-up-sub-text').val('');
+        $('#sign-up-text').val('Awesome, we\'ve signed you up!');
+        showSnackbar('Email submitted! :D', STATE_SUCCESS);
+        snackbar.css('background-color', '#06b47a');
+        submitForm = true;
+      } else { 
+        showSnackbar('Please enter a valid email', STATE_ERROR); 
+        snackbar.css('background-color', '#ec1b1b');
+        submitForm = false;
+      }
+    }
+  </script>
+
+  <!-- Sets the copyright for the current year -->
+  <script>
+    let currentYear = new Date().getFullYear();
+    let copyrightString = `\u00A9 ${currentYear} Valus`;
+    document.getElementById('copyright').innerHTML = copyrightString;
+  </script>
+
+  <script data-cfasync="false" type="text/javascript" src="form-submission-handler.js"></script>
+</body>
+</html>
