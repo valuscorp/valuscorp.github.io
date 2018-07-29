@@ -86,16 +86,18 @@ button#submit-email-button {
   font-size: 1.1em;
   padding: 15px 20px;
   border: none;
-  border-radius: 3px;
+  border-radius: 30px;
   outline: none;
   background: #ffffff;
   transition: all ease-in-out 0.25s;
+  margin-top: 20px;
 }
 
 button#submit-email-button:hover {
   transition: all ease-in-out 0.25s;
   background-color: rgb(245, 245, 245);
   color: #6f06b4;
+  border: 1px solid #6f06b4;
 }
 
 #snackbar-text-container {
