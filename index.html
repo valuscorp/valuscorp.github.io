@@ -11,8 +11,8 @@
   </script>
 
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <meta name="theme-color" content="#ca44f1">
+  <meta name="viewport" content="width=device-width" />
+  <meta name="theme-color" content="#05c582">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.jpg">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
@@ -27,51 +27,31 @@
 </head>
 <body>
 
-  <div id="site-container">
-    <div id="left-half-container">
-      <div class="content-container">
-        <a id='logo' href='/'>valus</a>
-        <h2 id="app-description"> "Premium and affordable legal services at the push of a button" </h2>
-      </div>
-
+  <div id='site-wrapper'>
+    <div class="content-container">
+      <a id='logo' href='/'>valus</a>
+      <h2 id="app-description"> Premium and affordable legal services at the push of a button </h2>
+      
+      <form id="gform" method="POST" action="https://script.google.com/macros/s/AKfycbyVKuM3GuPpSQAUm-O7tLmhesV2M4zhAm7TTbSoVDMia_rylGA/exec">
+        <label id="sign-up-text">Sign up for our updates!</label>
+        <input id="honeypot" type="text" name="honeypot" value="" style="display:none"/>
+        <div id="form-container">
+            <input type="text" name="email" id="email-input-field" placeholder="Enter your email">
+            <br>
+            <button type="submit" onclick="return shouldSubmitForm();" id="submit-email-button">Notify Me</button>
+        </div>
+      </form>
+      
       <div id="footer-container">
         <footer>
-          <h5 id="copyright">&copy; Valus</h5>
+          <h5 id="copyright">&copy; valus</h5>
         </footer>
       </div>
-
-    </div>
-    
-    <div id="right-half-container">
-      <div class="content-container">
-        <div id="prompt-container">
-          <h2 id="sign-up-text">Sign up for our updates!</h2>
-          <h3 id="sign-up-sub-text">Don't worry, we don't spam</h3>
-        </div>
-
-        <form id="gform" method="POST" action="https://script.google.com/macros/s/AKfycbyVKuM3GuPpSQAUm-O7tLmhesV2M4zhAm7TTbSoVDMia_rylGA/exec">
-          <input id="honeypot" type="text" name="honeypot" value="" style="display:none"/>
-          <div id="form-container">
-              <input type="text" name="email" id="email-input-field" placeholder="Enter your email">
-              <br>
-              <button type="submit" onclick="return shouldSubmitForm();" id="submit-email-button">Sign Up</button>
-          </div>
-        </form>
-      </div>
-      
-      <div id="snackbar-text-container">
-        <h4 id="snackbar-text"></h4>
-      </div>
-
     </div>
   </div>
-  
+
   <script>
-    const snackbar = $('#snackbar-text-container');
-    const snackbarText = $('#snackbar-text')[0];
     const emailField = $('#email-input-field');
-    const STATE_SUCCESS = 'SUCCESS';
-    const STATE_ERROR = 'ERROR';
     let submitForm = false;
 
     $(document).ready(function(){
@@ -85,28 +65,12 @@
         verifyEmail(emailFieldText);
       });
     });
-    
-    function showSnackbar(message, messageType) {
-      snackbarText.innerHTML = message;
-      snackbar.slideDown(250);
-
-      switch(messageType) {
-        case 'SUCCESS':
-          setTimeout(() => snackbar.slideUp(250), 3000);
-          break;
-        case 'ERROR':
-          setTimeout(() => snackbar.slideUp(250), 2000);
-          break;
-        default:
-          break;
-      }
-    } 
 
     function shouldSubmitForm() {
       return submitForm;
     }
     
-    // Sending emails withouot a server https://github.com/dwyl/learn-to-send-email-via-google-script-html-no-server
+    // Sending emails without a server https://github.com/dwyl/learn-to-send-email-via-google-script-html-no-server
     function verifyEmail(email) {
       // General Email Regex (RFC 5322 Official Standard)
       const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -116,12 +80,8 @@
       if (emailRegex.test(email)) {
         $('#sign-up-sub-text').val('');
         $('#sign-up-text').val('Awesome, we\'ve signed you up!');
-        showSnackbar('Email submitted! :D', STATE_SUCCESS);
-        snackbar.css('background-color', '#06b47a');
         submitForm = true;
       } else { 
-        showSnackbar('Please enter a valid email', STATE_ERROR); 
-        snackbar.css('background-color', '#ec1b1b');
         submitForm = false;
       }
     }
@@ -130,7 +90,7 @@
   <!-- Sets the copyright for the current year -->
   <script>
     let currentYear = new Date().getFullYear();
-    let copyrightString = `\u00A9 ${currentYear} Valus`;
+    let copyrightString = `\u00A9 ${currentYear} valus`;
     document.getElementById('copyright').innerHTML = copyrightString;
   </script>
 
