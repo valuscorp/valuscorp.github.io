@@ -1,27 +1,27 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-121638259-1"></script> -->
   <script>
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'UA-121638259-1');
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-121638259-1');
   </script>
 
   <meta charset="utf-8" />
-  <meta name="viewport" content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'/>
-  <meta name="theme-color" content="#05c582">
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.jpg">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content='width=device-width'/>
+  <meta name="theme-color" content="#05c582"/>
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.jpg"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 
   <title>Valus</title>
   <meta name="author" content="Valus">
   <meta name="description" content="Premium and affordable legal services at the push of a button."/>
-  <meta name="keywords" content="Legal,Valus,Law,Affordable,Efficient,Premium,Legal Service,Canada,Free legal online,Find a lawyer,legal 2018,Premium affordable legal services at the push of a button,Ontario law, Ontario legal, Canada legal, Canada law, Canada,Law">
+  <meta name="keywords" content="Legal,Valus,Law,Affordable,Efficient,Premium,Legal Service,Canada,Free legal online,Find a lawyer,legal 2018,Premium affordable legal services at the push of a button,Ontario law, Ontario legal, Canada legal, Canada law, Canada,Law"/>
 
-  <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="./main.css"/>
 </head>
 <body>
 
@@ -31,29 +31,22 @@
       <h2 id="app-description"> Premium and affordable legal services at the push of a button </h2>
       
       <form id="gform" method="POST" action="https://script.google.com/macros/s/AKfycbyVKuM3GuPpSQAUm-O7tLmhesV2M4zhAm7TTbSoVDMia_rylGA/exec" onsubmit="return verifyEmail();">
-        <label id="sign-up-text"> Sign up for our updates! </label>
         <input id="honeypot" type="text" name="honeypot" value="" style="display:none"/>
         <div id="form-container">
-            <input type="text" name="email" id="email-input-field" placeholder="Enter your email"/>
+            <label id="sign-up-text"> Sign up for our updates! 
+              <input type="text" name="email" id="email-input-field" placeholder="Enter your email"/>
+            </label>
             <h6 id='error-message'></h6>
             <br>
             <button type="submit" id="submit-email-button">Notify Me</button>
         </div>
       </form>
-      
-      <!-- <div id="footer-container">
-        <footer>
-          <h5 id="copyright">&copy; valus</h5>
-        </footer>
-      </div> -->
     </div>
   </div>
 
   <script>
     const emailInput = document.getElementById('email-input-field');
     const messageField = document.getElementById('error-message');
-    const submitButton = document.getElementById('submit-email-button');
-    let submitForm = false;
 
     // Sending emails without a server https://github.com/dwyl/learn-to-send-email-via-google-script-html-no-server
     function verifyEmail() {
@@ -86,12 +79,6 @@
     }
   </script>
 
-  <!-- Sets the copyright for the current year -->
-  <script>
-    let currentYear = new Date().getFullYear();
-    let copyrightString = `\u00A9 ${currentYear} valus`;
-    // document.getElementById('copyright').innerHTML = copyrightString;
-  </script>
 
   <script data-cfasync="false">
     !function(){function e(e){e.preventDefault();var t,n,o,a,r=(t=document.getElementById("gform"),n=t.elements,o=Object.keys(n).filter(function(e){return"honeypot"!==n[e].name}).map(function(e){return void 0!==n[e].name?n[e].name:n[e].length>0?n[e].item(0).name:void 0}).filter(function(e,t,n){return n.indexOf(e)==t&&e}),a={},o.forEach(function(e){var t=n[e];if(a[e]=t.value,t.length){for(var o=[],r=0;r<t.length;r++){var i=t.item(r);(i.checked||i.selected)&&o.push(i.value)}a[e]=o.join(", ")}}),a.formDataNameOrder=JSON.stringify(o),a.formGoogleSheetName=t.dataset.sheet||"responses",a.formGoogleSendEmail=t.dataset.email||"",a);if(r.honeypot)return!1;var i=e.target.action,m=new XMLHttpRequest;m.open("POST",i),m.setRequestHeader("Content-Type","application/x-www-form-urlencoded");var d=Object.keys(r).map(function(e){return encodeURIComponent(e)+"="+encodeURIComponent(r[e])}).join("&");m.send(d)}document.addEventListener("DOMContentLoaded",function(){document.getElementById("gform").addEventListener("submit",e,!1)},!1)}();
