@@ -36,7 +36,8 @@
         <label id="sign-up-text"> Sign up for our updates! </label>
         <input id="honeypot" type="text" name="honeypot" value="" style="display:none"/>
         <div id="form-container">
-            <input type="text" name="email" id="email-input-field" placeholder="Enter your email">
+            <input type="text" name="email" id="email-input-field" placeholder="Enter your email"/>
+            <h6 id='error-message'></h6>
             <br>
             <button type="submit" onclick="return shouldSubmitForm();" id="submit-email-button">Notify Me</button>
         </div>
@@ -51,37 +52,49 @@
   </div>
 
   <script>
-    const emailField = $('#email-input-field');
+    const emailInput = $('#email-input-field');
+    const messageField = $('#error-message');
     let submitForm = false;
 
     $(document).ready(function(){
       
-      emailField.keypress((e) => { // Enter key was pressed
-        if (e.which === 13) verifyEmail(emailField.val().toLowerCase().trim());
+      emailInput.keypress((e) => { // Enter key was pressed
+        if (e.which === 13) verifyEmail(emailInput.val().toLowerCase().trim());
       });
 
       $('#submit-email-button').on('click', () => {
-        const emailFieldText = emailField.val().toLowerCase().trim();
-        verifyEmail(emailFieldText);
+        const emailInputText = emailInput.val().toLowerCase().trim();
+        verifyEmail(emailInputText);
       });
     });
 
-    function shouldSubmitForm() {
-      return submitForm;
+    function shouldSubmitForm(shouldSubmitForm) {
+      return false;
+      // return submitForm;
     }
-    
+
     // Sending emails without a server https://github.com/dwyl/learn-to-send-email-via-google-script-html-no-server
     function verifyEmail(email) {
       // General Email Regex (RFC 5322 Official Standard)
       const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-      submitForm = false;
-
       if (emailRegex.test(email)) {
-        $('#sign-up-sub-text').val('');
-        $('#sign-up-text').val('Awesome, we\'ve signed you up!');
+        messageField.html('Awesome, we\'ve signed you up!');
+        messageField.css("color", "#05c582");
+
+        emailInput.css({
+          "border-color": "#05c582",
+          "pointer-events": "none",
+          "caret-color": "transparent"
+        });
+
+        emailInput.prop("disabled", false);
         submitForm = true;
-      } else { 
+      } else {
+        messageField.html('Please enter a valid email');
+        messageField.css("color", "red");
+
+        emailInput.css("border-color", "red");
         submitForm = false;
       }
     }
@@ -91,7 +104,7 @@
   <script>
     let currentYear = new Date().getFullYear();
     let copyrightString = `\u00A9 ${currentYear} valus`;
-    document.getElementById('copyright').innerHTML = copyrightString;
+    // document.getElementById('copyright').innerHTML = copyrightString;
   </script>
 
   <script data-cfasync="false" type="text/javascript" src="form-submission-handler.js"></script>
