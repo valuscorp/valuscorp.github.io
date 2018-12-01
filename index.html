@@ -11,7 +11,7 @@
   </script>
 
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width" />
+  <meta name="viewport" content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'/>
   <meta name="theme-color" content="#05c582">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.jpg">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -23,7 +23,6 @@
 
   <link rel="stylesheet" typpe="text/css" media="screen" href="normalize-min.css">
   <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-  <script src="jquery-3.3.1.min.js"></script>
 </head>
 <body>
 
@@ -52,25 +51,13 @@
   </div>
 
   <script>
-    const emailInput = $('#email-input-field');
-    const messageField = $('#error-message');
+    const emailInput = document.querySelector('#email-input-field');
+    const messageField = document.querySelector('#error-message');
+    const submitButton = document.querySelector('#submit-email-button');
     let submitForm = false;
 
-    $(document).ready(function(){
-      
-      emailInput.keypress((e) => { // Enter key was pressed
-        if (e.which === 13) verifyEmail(emailInput.val().toLowerCase().trim());
-      });
-
-      $('#submit-email-button').on('click', () => {
-        const emailInputText = emailInput.val().toLowerCase().trim();
-        verifyEmail(emailInputText);
-      });
-    });
-
     function shouldSubmitForm(shouldSubmitForm) {
-      return false;
-      // return submitForm;
+      return verifyEmail(emailInput.value.toLowerCase().trim());
     }
 
     // Sending emails without a server https://github.com/dwyl/learn-to-send-email-via-google-script-html-no-server
@@ -79,24 +66,24 @@
       const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
       if (emailRegex.test(email)) {
-        messageField.html('Awesome, we\'ve signed you up!');
-        messageField.css("color", "#05c582");
+        messageField.innerHTML = 'Awesome, we\'ve signed you up!';
+        messageField.style["color"] = "#05c582";
 
-        emailInput.css({
-          "border-color": "#05c582",
-          "pointer-events": "none",
-          "caret-color": "transparent"
-        });
-
-        emailInput.prop("disabled", false);
-        submitForm = true;
+        emailInput.style["border-color"] = "#05c582";
+        emailInput.style["pointer-events"] = "none";
+        emailInput.style["caret-color"] = "transparent";
+        
+        emailInput.setAttribute("disabled", false);
+        return true;
       } else {
-        messageField.html('Please enter a valid email');
-        messageField.css("color", "red");
+        messageField.innerHTML = 'Please enter a valid email';
+        messageField.style["color"] = "red";
 
-        emailInput.css("border-color", "red");
-        submitForm = false;
+        emailInput.style["border-color"] = "red";
+        return false;
       }
+      
+      return false;
     }
   </script>
 
