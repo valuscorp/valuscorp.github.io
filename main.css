@@ -46,15 +46,13 @@ body, html {
   flex-direction: column;
   justify-content: center;
   padding-left: 50px;
-  /* background-color: lightcoral; */
 }
 
 #site-wrapper {
   height: 100%;
   display: flex;
-  /* justify-content: center; */
   align-items: center;
-  /* background-color: lightblue; */
+  width: 95%;
 }
 
 a#logo {
@@ -93,6 +91,19 @@ h6#error-message {
   font-weight: normal;
   font-style: italic;
   color: red;
+}
+
+#copyright-year {
+  font-size: 16px;
+  margin: 0;
+  margin-bottom: 25px;
+  margin-left: 10px;
+}
+
+#logo-wrap {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
 }
 
 button#submit-email-button {
@@ -169,6 +180,8 @@ h5#copyright {
   color: #05c582;
   margin-bottom: 5px;
   margin-top: 0;
+  font-weight: lighter;
+  font-family: 'robotoRegular';
 }
 
 @media only screen and (max-width: 767px) {
@@ -181,7 +194,18 @@ h5#copyright {
 
   #site-wrapper {
     height: 100%;
+    width: 100%;
     justify-content: center;
+  }
+
+  #copyright-year {
+    margin-bottom: 50px;
+    margin-left: 0;
+  }
+  
+  #logo-wrap {
+    flex-direction: column;
+    align-items: center;
   }
 
   .content-container {
