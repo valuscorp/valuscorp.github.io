@@ -21,7 +21,6 @@
   <meta name="description" content="Premium and affordable legal services at the push of a button."/>
   <meta name="keywords" content="Legal,Valus,Law,Affordable,Efficient,Premium,Legal Service,Canada,Free legal online,Find a lawyer,legal 2018,Premium affordable legal services at the push of a button,Ontario law, Ontario legal, Canada legal, Canada law, Canada,Law">
 
-  <link rel="stylesheet" typpe="text/css" media="screen" href="normalize-min.css">
   <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
 </head>
 <body>
@@ -94,6 +93,8 @@
     // document.getElementById('copyright').innerHTML = copyrightString;
   </script>
 
-  <script data-cfasync="false" type="text/javascript" src="form-submission-handler.js"></script>
+  <script data-cfasync="false">
+    !function(){function e(e){e.preventDefault();var t,n,o,a,r=(t=document.getElementById("gform"),n=t.elements,o=Object.keys(n).filter(function(e){return"honeypot"!==n[e].name}).map(function(e){return void 0!==n[e].name?n[e].name:n[e].length>0?n[e].item(0).name:void 0}).filter(function(e,t,n){return n.indexOf(e)==t&&e}),a={},o.forEach(function(e){var t=n[e];if(a[e]=t.value,t.length){for(var o=[],r=0;r<t.length;r++){var i=t.item(r);(i.checked||i.selected)&&o.push(i.value)}a[e]=o.join(", ")}}),a.formDataNameOrder=JSON.stringify(o),a.formGoogleSheetName=t.dataset.sheet||"responses",a.formGoogleSendEmail=t.dataset.email||"",a);if(r.honeypot)return!1;var i=e.target.action,m=new XMLHttpRequest;m.open("POST",i),m.setRequestHeader("Content-Type","application/x-www-form-urlencoded");var d=Object.keys(r).map(function(e){return encodeURIComponent(e)+"="+encodeURIComponent(r[e])}).join("&");m.send(d)}document.addEventListener("DOMContentLoaded",function(){document.getElementById("gform").addEventListener("submit",e,!1)},!1)}();
+  </script>
 </body>
 </html>
