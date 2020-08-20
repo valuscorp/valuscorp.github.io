@@ -48,11 +48,28 @@ body, html {
   padding-left: 50px;
 }
 
+h1#subtext {
+  width: min-content;
+  font-size: 3rem;
+  font-style: italic;
+  color: white;
+  background-color: #edbb5e;
+  box-shadow: 0px 0px 2.97px 0.03px rgba(0, 0, 0, 0.15);
+
+  border-radius: 5px;
+  padding: 20px;
+  white-space: nowrap;
+}
+
 #site-wrapper {
   height: 100%;
   display: flex;
   align-items: center;
   width: 95%;
+}
+
+img#brand-logo {
+  max-width: 50%;  
 }
 
 a#logo {
@@ -61,7 +78,7 @@ a#logo {
   margin: 0;
   font-size: 128px;
   font-family: 'kollektifBold';
-  color: #05c582;
+  color: #edbb5e;
   display: inline-block;
 }
 
@@ -96,8 +113,8 @@ h6#error-message {
 #copyright-year {
   font-size: 16px;
   margin: 0;
-  margin-bottom: 25px;
-  margin-left: 10px;
+  margin: 20px;
+  margin-left: 5px;
 }
 
 #logo-wrap {
@@ -109,7 +126,7 @@ h6#error-message {
 button#submit-email-button {
   background-position: center;
   transition: background 0.25s;
-  background-color:  #05c582;
+  background-color:  #edbb5e;
   outline: none;
   border: 0px;
   cursor: pointer;
@@ -136,7 +153,7 @@ button#submit-email-button:hover {
 }
 
 button#submit-email-button:active {
-  background-color: #05c582;
+  background-color: #edbb5e;
   background-size: 100%;
   transition: background 0s;
 }
@@ -161,9 +178,9 @@ label#sign-up-text input {
 
 h2#app-description {
   color: #313131;
-  font-size: 26px;
+  font-size: 30px;
   margin-bottom: 80px;
-  margin-top: 0px;
+  margin-top: 20px;
 }
 
 #footer-container {
@@ -177,7 +194,7 @@ h2#app-description {
 }
 
 h5#copyright {
-  color: #05c582;
+  color: #edbb5e;
   margin-bottom: 5px;
   margin-top: 0;
   font-weight: lighter;
@@ -192,6 +209,10 @@ h5#copyright {
     align-items: center;
   }
 
+  img#brand-logo {
+    max-width: 90%;
+  }
+
   #site-wrapper {
     height: 100%;
     width: 100%;
@@ -199,8 +220,14 @@ h5#copyright {
   }
 
   #copyright-year {
-    margin-bottom: 50px;
-    margin-left: 0;
+    /* margin-bottom: 50px; */
+    margin: 0;
+    margin-top: 40px;
+    margin-bottom: 30px;
+  }
+
+  h1#subtext {
+    font-size: 1.4rem;
   }
   
   #logo-wrap {
